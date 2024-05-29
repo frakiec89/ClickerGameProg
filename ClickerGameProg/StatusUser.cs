@@ -1,11 +1,12 @@
 ﻿using System.DirectoryServices.ActiveDirectory;
+using System.Reflection;
 
 namespace ClickerGameProg
 {
     public abstract class  StatusUser : BaseObject
     {
-        protected double _minExperience;
-        public abstract bool Available( User user);
+        protected static double _minExperience;
+        public abstract  bool Available( User user);
 
         public override string ToString()
         {
@@ -18,13 +19,12 @@ namespace ClickerGameProg
         public Junior ()
         {
             _minExperience = 100 ;
+            Name = "Джун";
         }
 
         public override bool Available(User us)
         {
-
             // todo  - добавить образование 
-
             if ( us.Experience < _minExperience)
                 return false;
             else
@@ -37,4 +37,25 @@ namespace ClickerGameProg
         }
     }
 
+    public class Midle : StatusUser
+    {
+        
+        public Midle ()
+        {
+            _minExperience = 500;
+            Name = "Мидл";
+        }
+
+        public override bool Available(User us)
+        {
+            if (us.Experience < _minExperience)
+                return false;
+            else
+                return true;
+        }
+        public override string ToString()
+        {
+            return base.ToString() + "Мидел (программист с опытом  разработки)";
+        }
+    }
 }

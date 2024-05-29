@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClickerGameProg
 {
-
     public class BaseObject
     {
         private const string _pathEmpty = "No";
@@ -38,8 +32,36 @@ namespace ClickerGameProg
         }
         public double Cash {  get; set; }   
         public StatusUser StatusUser { get; set; }  
+        public Education Education { get; set; } 
 
-        public Education Education { get; set; }    
+        /// <summary>
+        /// метод меняет статус пользователя
+        /// </summary>
+        /// <param name="status"></param>
+        /// <exception cref="Exception">Если не хватает показателей </exception>
+        public void ApplyNewStatus (StatusUserType status )
+        {
+            switch (status)
+            {
+                case StatusUserType.Junior: 
+                    var j = new Junior();
+                    if (j.Available(this) == true)
+                        StatusUser = j;
+                    else
+                        throw new Exception($"Вы не можете претендовать на должность {j.Name}");
+                    break;
 
+                case StatusUserType.Midle:
+
+                    var us = new Midle();
+                    if (us.Available(this) == true)
+                        StatusUser = us;
+                    else
+                        throw new Exception($"Вы не можете претендовать на должность {us.Name}");
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

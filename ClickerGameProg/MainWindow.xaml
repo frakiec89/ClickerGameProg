@@ -6,10 +6,106 @@
         xmlns:local="clr-namespace:ClickerGameProg"
         mc:Ignorable="d"
         Title="Игра"
-        Height="450"
-        Width="800">
-   
-    <Grid>
+        Height="1000"
+        Width="1000"
+        >
+    <Window.Resources>
+        <Style TargetType="Border" x:Key="baseBord">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="BorderBrush"
+                    Value="Black" />
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
 
+        <Style TargetType="Border" BasedOn="{StaticResource baseBord}">
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        
+        <Style TargetType="Label" >
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Padding" Value="2"/>
+        </Style>
+    </Window.Resources>
+   
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="200"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Column="0"
+                Grid.Row="0"
+                Style="{StaticResource baseBord}">
+            <Grid x:Name="gridUser">
+                <StackPanel>
+
+                    <Label HorizontalAlignment="Center">Игрок:</Label>
+                    
+                    <Border>
+                        <StackPanel Orientation="Horizontal">
+                            <Label>Имя:</Label>
+                            <Label Content="{Binding Name}" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border>
+                        <StackPanel Orientation="Horizontal">
+                            <Label>Опыт:</Label>
+                            <Label Content="{Binding Experience}" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border>
+                        <StackPanel Orientation="Horizontal">
+                            <Label>Деньги:</Label>
+                            <Label Content="{Binding Cash}" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border>
+                        <StackPanel
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <Label >
+                                Статус:</Label>
+                            <Label Content="{Binding StatusUser.Name}" 
+                                   ToolTip="{Binding StatusUser}"
+                                   />
+
+                            <Border VerticalAlignment="Center">
+                                <StackPanel 
+                                    Orientation="Horizontal">
+                                    <Label>Подать на:</Label>
+                                    <Button 
+                                        x:Name="btnJun"
+                                        Click="Button_Click_NextStatus">J</Button>
+                                    <Button 
+                                        x:Name="btnMidle"
+                                        Click="Button_Click_NextStatus">M</Button>
+                                    <Button 
+                                        x:Name="btnS"
+                                        Click="Button_Click_NextStatus">S</Button>
+                                </StackPanel>
+                            </Border>
+
+                        </StackPanel>
+                    </Border>
+
+                    <Button Click="Button_Click">Фармить  опыт</Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+        
     </Grid>
 </Window>
