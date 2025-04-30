@@ -1,4 +1,5 @@
-﻿namespace ClickerGameProg
+﻿// track
+namespace ClickerGameProg
 {
     public enum StatusUserType
     {

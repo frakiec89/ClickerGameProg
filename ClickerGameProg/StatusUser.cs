@@ -1,6 +1,4 @@
-﻿using System.DirectoryServices.ActiveDirectory;
-using System.Reflection;
-
+﻿// track
 namespace ClickerGameProg
 {
     public abstract class  StatusUser : BaseObject

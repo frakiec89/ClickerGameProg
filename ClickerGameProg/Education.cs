@@ -1,5 +1,6 @@
 ﻿namespace ClickerGameProg
 {
+    // track
     public abstract class Education : BaseObject
     {
         public override string ToString()

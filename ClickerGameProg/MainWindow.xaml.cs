@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+// track
 
 namespace ClickerGameProg
 {
@@ -28,6 +20,47 @@ namespace ClickerGameProg
             InitializeComponent();
             user = GetTestUser();
             this.Loaded += MainWindow_Loaded;
+            btnRun.Click += BtnRun_Click;
+            btnSave.Click += BtnSave_Click;
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+
+            MyInputMessage message = new MyInputMessage("Укажите название сохранениия");
+            message.ShowDialog();
+            
+            if (message.IsTrye == false)
+                return;
+
+            string jsUser = JsonConvert.SerializeObject(user);
+
+            string basePath = AppDomain.CurrentDomain.BaseDirectory; 
+            string saveFolder = Path.Combine(basePath, "save");
+
+            if (!Directory.Exists(saveFolder))
+                Directory.CreateDirectory(saveFolder);
+
+            string filePath = Path.Combine(saveFolder, $"{message.Content}.txt");
+            File.WriteAllText(filePath, jsUser);
+
+            File.WriteAllText($@"save//{message.Content}.txt", jsUser);
+        }
+
+        private void BtnRun_Click(object sender, RoutedEventArgs e)
+        {
+
+            RunPage runPage = new RunPage();
+            runPage.ShowDialog();
+
+            if(runPage.IsRun == true)
+            {
+                var jsUser = File.ReadAllText(runPage.Path);
+                user = JsonConvert.DeserializeObject<User>(jsUser);
+                gridUser.DataContext = user;
+            }
+
+           
         }
 
         private User? GetTestUser()
@@ -71,7 +104,7 @@ namespace ClickerGameProg
         {
             user.Experience++;
             user.Cash--;
-            gridUser.DataContext = null; // todo  применить интерфейс 
+            gridUser.DataContext = null; 
             gridUser.DataContext = user;
         }
     }

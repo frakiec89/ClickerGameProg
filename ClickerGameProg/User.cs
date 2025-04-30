@@ -1,5 +1,5 @@
 ﻿using System;
-
+// track
 namespace ClickerGameProg
 {
     public class BaseObject

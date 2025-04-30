@@ -9,6 +9,8 @@
         Height="1000"
         Width="1000"
         >
+    <!--// track-->
+    
     <Window.Resources>
         <Style TargetType="Border" x:Key="baseBord">
             <Setter Property="Margin" Value="5" />
@@ -104,8 +106,16 @@
 
                     <Button Click="Button_Click">Фармить  опыт</Button>
                 </StackPanel>
+
+              
+                
+                
             </Grid>
         </Border>
         
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Button x:Name="btnSave">  Сохранить</Button>
+            <Button x:Name="btnRun">Загрузить</Button>
+        </StackPanel>
     </Grid>
 </Window>
