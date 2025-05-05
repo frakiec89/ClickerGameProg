@@ -12,23 +12,22 @@
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="200"/>
                             <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="100"/>
                         </Grid.ColumnDefinitions>
-                        
-                        <TextBlock Margin="10" Grid.Column="0"
-                                   Text="{Binding Name}" />
 
-                        <TextBlock Margin="10" Grid.Column="1"
-                               Text="{Binding Value}" />
+                        <TextBlock Margin="10,0" Grid.Column="0" VerticalAlignment="Center"
+                           Text="{Binding Name}" />
 
-                        <Button Margin="10" Width="100"
-                            Grid.Column="2" IsEnabled="{Binding IsEnabled}"
-                            x:Name="btnUp"
-                                Click="btnUp_Click"
-                                Content="{Binding Message}"></Button>
+                        <TextBlock Margin="10,0" Grid.Column="1" VerticalAlignment="Center"
+                           Text="{Binding Value}" />
 
+                        <Button Margin="10,0" Width="Auto"
+                        Grid.Column="2" IsEnabled="{Binding IsEnabled}"
+                        x:Name="btnUp"
+                        Click="btnUp_Click"
+                        Content="{Binding Message}"></Button>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Net.NetworkInformation;
 using System.Windows;
 using System.Windows.Controls;
 // track
@@ -15,7 +13,8 @@ namespace ClickerGameProg
     public partial class MainWindow : Window
     {
         BookService bookService;
-       
+        SaveService SaveService; 
+
         User user;
         ListWindow listWindow;
         public MainWindow()
@@ -27,6 +26,7 @@ namespace ClickerGameProg
             btnSave.Click += BtnSave_Click;
             btnBooks.Click += BtBooks_Click;
             bookService = new BookService();
+            SaveService =new SaveService();
         }
 
         private void BtBooks_Click(object sender, RoutedEventArgs e)
@@ -79,22 +79,23 @@ namespace ClickerGameProg
             File.WriteAllText(filePath, jsUser);
 
             File.WriteAllText($@"save//{message.Content}.txt", jsUser);
+            SaveService = new SaveService();
         }
 
         private void BtnRun_Click(object sender, RoutedEventArgs e)
         {
+            var sl =  SaveService.MyListView();
+            listWindow = new ListWindow(sl , RunFunc );
+            listWindow.ShowDialog();
 
-            RunPage runPage = new RunPage();
-            runPage.ShowDialog();
-
-            if(runPage.IsRun == true)
+            string RunFunc(object save)
             {
-                var jsUser = File.ReadAllText(runPage.Path);
+                Save s = save as Save;
+                var jsUser = File.ReadAllText(s.Path);
                 user = JsonConvert.DeserializeObject<User>(jsUser);
                 gridUser.DataContext = user;
+                return "Успешно";
             }
-
-           
         }
 
         private User? GetTestUser()
