@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 // track
 namespace ClickerGameProg
 {
@@ -63,5 +64,7 @@ namespace ClickerGameProg
                     break;
             }
         }
+
+        public List<Book> Books { get; set; } = new List<Book>();
     }
 }

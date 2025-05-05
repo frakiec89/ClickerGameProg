@@ -117,5 +117,12 @@
             <Button x:Name="btnSave">  Сохранить</Button>
             <Button x:Name="btnRun">Загрузить</Button>
         </StackPanel>
+
+
+        <StackPanel  Grid.Row="1" Grid.Column="0">
+            <Button x:Name="btnBooks">Книги</Button>
+            
+        </StackPanel>
+
     </Grid>
 </Window>

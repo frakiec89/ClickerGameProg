@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Net.NetworkInformation;
 using System.Windows;
 using System.Windows.Controls;
 // track
@@ -12,9 +14,10 @@ namespace ClickerGameProg
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        BookService bookService;
+       
         User user;
-
+        ListWindow listWindow;
         public MainWindow()
         {
             InitializeComponent();
@@ -22,7 +25,38 @@ namespace ClickerGameProg
             this.Loaded += MainWindow_Loaded;
             btnRun.Click += BtnRun_Click;
             btnSave.Click += BtnSave_Click;
+            btnBooks.Click += BtBooks_Click;
+            bookService = new BookService();
         }
+
+        private void BtBooks_Click(object sender, RoutedEventArgs e)
+        {
+            listWindow = new ListWindow(bookService.GetMyListViews(user) , ByeBook);
+            listWindow.ShowDialog();
+            gridUser.DataContext = null;
+            gridUser.DataContext = user;
+        }
+
+        private string ByeBook (object book )
+        {
+            var  b  = book as Book;
+
+            if(user.Cash >= b.Price)
+            {
+                user.Books.Add(b);
+                user.Cash -=b.Price;
+                user.Experience += b.Experience;
+
+                listWindow.Views = bookService.GetMyListViews(user);
+             
+                return "Книга куплена";
+            }
+            else
+            {
+                return "У вас не хватает денег";
+            }
+        }
+
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
