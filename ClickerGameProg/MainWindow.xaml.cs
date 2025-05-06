@@ -85,7 +85,7 @@ namespace ClickerGameProg
         private void BtnRun_Click(object sender, RoutedEventArgs e)
         {
             var sl =  SaveService.MyListView();
-            listWindow = new ListWindow(sl , RunFunc );
+            listWindow = new ListWindow(sl , RunFunc , DeleteFunc);
             listWindow.ShowDialog();
 
             string RunFunc(object save)
@@ -96,6 +96,17 @@ namespace ClickerGameProg
                 gridUser.DataContext = user;
                 return "Успешно";
             }
+
+            string DeleteFunc(object save)
+            {
+                var s = save as Save;
+                File.Delete(s.Path);
+                SaveService = new SaveService();
+                listWindow.Views = SaveService.MyListView();
+                return "Успешно";
+            }
+
+
         }
 
         private User? GetTestUser()

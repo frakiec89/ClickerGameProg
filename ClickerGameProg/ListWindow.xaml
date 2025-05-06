@@ -14,6 +14,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"/>
                             <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="100"/> 
                             <ColumnDefinition Width="100"/>
                         </Grid.ColumnDefinitions>
 
@@ -25,9 +26,16 @@
 
                         <Button Margin="10,0" Width="Auto"
                         Grid.Column="2" IsEnabled="{Binding IsEnabled}"
-                        x:Name="btnUp"
+                        x:Name="btnUp" 
                         Click="btnUp_Click"
                         Content="{Binding Message}"></Button>
+
+                        <Button Margin="10,0" Width="Auto"
+                        Grid.Column="3" 
+                        Visibility="{Binding IsDelete}"
+                        x:Name="btnDelete"
+                        Click="btnDelete_Click"
+                        >Удалить</Button>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

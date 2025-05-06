@@ -33,7 +33,7 @@ namespace ClickerGameProg
                 {
                     Date = fileInfo.CreationTime,
                     Name = fileInfo.Name,
-                    Path = item
+                    Path = item , 
                 };
 
                 Saves .Add(s);
@@ -53,6 +53,9 @@ namespace ClickerGameProg
                 l.Message = "Загрузить";
                 l.IsEnabled = true;
                 l.MyObject = item;
+                               
+                               
+                l.IsDelete = "Visible";
                 list.Add(l);
             }
             return list;

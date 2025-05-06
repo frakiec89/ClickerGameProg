@@ -8,7 +8,8 @@ namespace ClickerGameProg
         public string Message { get; set; }
 
         public bool IsEnabled { get; set; }
+        public string IsDelete { get; set; } = "Collapsed";
 
-        public object MyObject { get; set; }
+        public object MyObject { get; set; } 
     }
 }
