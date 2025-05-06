@@ -22,13 +22,12 @@ namespace ClickerGameProg
         public SaveService ()
         {
             string basePath = @$"{AppDomain.CurrentDomain.BaseDirectory}\save";
-
+            Directory.CreateDirectory(basePath);
             var getFiles = Directory.GetFiles(basePath).ToList();
 
             foreach (var item in getFiles)
             {
                 FileInfo fileInfo = new FileInfo(item);
-
                 var s = new Save()
                 {
                     Date = fileInfo.CreationTime,
