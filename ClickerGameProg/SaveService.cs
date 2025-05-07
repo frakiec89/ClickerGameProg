@@ -52,9 +52,6 @@ namespace ClickerGameProg
                 l.Message = "Загрузить";
                 l.IsEnabled = true;
                 l.MyObject = item;
-                               
-                               
-                l.IsDelete = "Visible";
                 list.Add(l);
             }
             return list;

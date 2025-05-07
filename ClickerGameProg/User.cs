@@ -8,6 +8,8 @@ namespace ClickerGameProg
         private const string _pathEmpty = "No";
         private string _pathImage;
         public string Name { get; set; }
+
+        public bool GameIver { get; set; }
         public string PathImage
         {
             get
@@ -34,6 +36,12 @@ namespace ClickerGameProg
         public double Cash {  get; set; }   
         public StatusUser StatusUser { get; set; }  
         public Education Education { get; set; } 
+
+        /// <summary>
+        /// Учиться
+        /// </summary>
+        public Stydy Stydy { get; set; }
+
 
         /// <summary>
         /// метод меняет статус пользователя
@@ -66,5 +74,34 @@ namespace ClickerGameProg
         }
 
         public List<Book> Books { get; set; } = new List<Book>();
+
+
+        public void GameOver (Action<string> message)
+        {
+            if (Cash < 0)
+            {
+                message("Деньги закончились");
+                GameIver = true;
+            }
+        }
+    }
+
+    public class Stydy
+    {
+        public bool Status {  get; set; }
+        public Education education;
+        public int StatusDay { get; private set; } = 0;
+
+        public void GoStudy ()
+        {
+            StatusDay++;
+        }
+
+        public bool IsEnd ()
+        {
+            if (StatusDay >= education.CountDAY)
+                return true;
+            return false;
+        }
     }
 }

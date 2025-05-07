@@ -103,13 +103,7 @@
 
                         </StackPanel>
                     </Border>
-
-                    <Button Click="Button_Click">Фармить  опыт</Button>
                 </StackPanel>
-
-              
-                
-                
             </Grid>
         </Border>
         
@@ -121,8 +115,11 @@
 
         <StackPanel  Grid.Row="1" Grid.Column="0">
             <Button x:Name="btnBooks">Книги</Button>
-            
-        </StackPanel>
+            <Button x:Name="btnStudy">Учеба</Button>
 
+
+
+        </StackPanel>
+        <Button Grid.Column="2" Click="Button_Click">Фармить  опыт</Button>
     </Grid>
 </Window>

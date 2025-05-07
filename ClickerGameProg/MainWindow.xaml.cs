@@ -13,8 +13,8 @@ namespace ClickerGameProg
     public partial class MainWindow : Window
     {
         BookService bookService;
-        SaveService SaveService; 
-
+        SaveService SaveService;
+        StudyService StudyService;
         User user;
         ListWindow listWindow;
         public MainWindow()
@@ -25,8 +25,39 @@ namespace ClickerGameProg
             btnRun.Click += BtnRun_Click;
             btnSave.Click += BtnSave_Click;
             btnBooks.Click += BtBooks_Click;
+            btnStudy.Click += BtnStudy_Click;
             bookService = new BookService();
             SaveService =new SaveService();
+            StudyService =new StudyService();
+        }
+
+        private void BtnStudy_Click(object sender, RoutedEventArgs e)
+        {
+            listWindow = new ListWindow(StudyService.MyListView(user), Study);
+            listWindow.ShowDialog();
+            gridUser.DataContext = null;
+            gridUser.DataContext = user;
+
+            string Study(object arg)
+            {
+                var e = arg as Education;
+
+                if (user.Education == null && e.Lavel > 1)
+                {
+                    return $"вы не можите поступить в {e.Name}";
+                }
+
+                if (user.Education != null)
+                {
+                    if (e.Lavel - user.Education.Lavel > 1)
+                        return $"вы не можите поступить в {e.Name}";
+                }
+
+                user.Stydy = new Stydy {  education = e, Status = true };
+
+                listWindow.Views = StudyService.MyListView(user);
+                return "вы  поступили";
+            }
         }
 
         private void BtBooks_Click(object sender, RoutedEventArgs e)
@@ -148,6 +179,29 @@ namespace ClickerGameProg
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
+            user.GameOver((x) => MessageBox.Show(x));
+
+            if (user.GameIver)
+            {
+                this.Title = "ВСЕЕЕЕ";
+                return;
+            }
+
+
+            if(user.Stydy!=null  && user.Stydy.Status==true)
+            {
+                user.Stydy.GoStudy();
+                if (user.Stydy.IsEnd())
+                {
+                    user.Education = user.Stydy.education;
+                    MessageBox.Show($"Вы закончили {user.Education}");
+                    user.Stydy.Status = false;
+                }
+            }
+
+            user.GameOver((x)=>MessageBox.Show(x));
+            
             user.Experience++;
             user.Cash--;
             gridUser.DataContext = null; 
