@@ -13,25 +13,30 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="200"/>
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="100"/> 
                             <ColumnDefinition Width="100"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Margin="10,0" Grid.Column="0" VerticalAlignment="Center"
+                        <Image Grid.Column="0" Height="50" Width="50"
+                               Source="{Binding PathImage}"
+                               ></Image>
+                        
+                        <TextBlock Margin="10,0" Grid.Column="1" VerticalAlignment="Center"
                            Text="{Binding Name}" />
 
-                        <TextBlock Margin="10,0" Grid.Column="1" VerticalAlignment="Center"
+                        <TextBlock Margin="10,0" Grid.Column="2" VerticalAlignment="Center"
                            Text="{Binding Value}" />
 
                         <Button Margin="10,0" Width="Auto"
-                        Grid.Column="2" IsEnabled="{Binding IsEnabled}"
+                        Grid.Column="3" IsEnabled="{Binding IsEnabled}"
                         x:Name="btnUp" 
                         Click="btnUp_Click"
                         Content="{Binding Message}"></Button>
 
                         <Button Margin="10,0" Width="Auto"
-                        Grid.Column="3" 
+                        Grid.Column="4" 
                         Visibility="{Binding IsDelete}"
                         x:Name="btnDelete"
                         Click="btnDelete_Click"

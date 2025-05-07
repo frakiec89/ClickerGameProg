@@ -1,9 +1,8 @@
 ﻿
 namespace ClickerGameProg
 {
-    public class MyListView
+    public class MyListView :BaseObject
     {
-        public string Name { get; set; }
         public string Value { get; set; }
         public string Message { get; set; }
 

@@ -6,8 +6,8 @@ namespace ClickerGameProg
     {
         public List<Education> Educations = new List<Education>()
         {
-            new Education(){ Lavel = 1 , Name = "Школа" , CountDAY = 5 } ,
-            new Education(){ Lavel = 2 , Name = "Коллед" , CountDAY = 10  } ,
+            new Education(){ PathImage=@"/Image\s.png" , Lavel = 1 , Name = "Школа" , CountDAY = 5 } ,
+            new Education(){ PathImage=@"/Image\c.png" , Lavel = 2 , Name = "Коллед" , CountDAY = 10  } ,
             new Education(){ Lavel = 3 , Name = "Универ" , CountDAY =10 }
         };
 
@@ -18,6 +18,7 @@ namespace ClickerGameProg
             foreach (var item in Educations)
             {
                 var l = new MyListView();
+                l.PathImage = item.PathImage;
                 l.Name = item.Name;
                 l.Value = item.CountDAY.ToString() + " Дней";
                 l.Message = "Поступить";

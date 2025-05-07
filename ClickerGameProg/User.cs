@@ -5,8 +5,8 @@ namespace ClickerGameProg
 {
     public class BaseObject
     {
-        private const string _pathEmpty = "No";
-        private string _pathImage;
+        private const string _pathEmpty = @"/Image\No.jpg";
+        private string _pathImage = string.Empty;
         public string Name { get; set; }
 
         public bool GameIver { get; set; }
@@ -14,7 +14,7 @@ namespace ClickerGameProg
         {
             get
             {
-                if (_pathEmpty == string.Empty)
+                if (_pathImage == string.Empty)
                     return _pathEmpty;
                 else
                     return _pathImage;
